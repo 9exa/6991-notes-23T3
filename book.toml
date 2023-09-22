@@ -1,0 +1,6 @@
+[book]
+authors = ["Wisesa Resosudarmo"]
+language = "en"
+multilingual = false
+src = "src"
+title = "COMP6991T3CourseNotes"
