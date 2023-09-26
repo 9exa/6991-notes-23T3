@@ -202,8 +202,6 @@ for x in v.iter_mut() {
     *x = -*x;
 }
 println!("{v:?}");
-
-
 ```
 
 
@@ -288,37 +286,54 @@ assert_eq!(mean, 4);
 Rust unpacks expressions to allow you to create variables convinently
 ```rust
 // Only run block if a value is Some
-let optional = Some(14)
+let optional = Some(14);
 if let Some(x) = optional {
     // Some code
-}
+};
 
 // run code when a condition is not true, then exit the fuction
 let Some(x) = optional else {
     // Edge case gaurding
     return ();
-}
+};
 
 // Declare multiple variables in a single line
 let (x, y, mut z) = (1, 2, 3);
 
 // You can unpack structs too
+#[derive(Clone)]
 struct Point {
     x: i32,
     y: i32,
 }
 let p = Point {x: 1, y: 42};
 
-let Point { x: w, y: h} = p;
+let Point { x: w, y: h} = p.clone();
 println!("w: {w} h:{h}");
-
+let Point {x: w2, ..} = p.clone();
+println!("I only care about w: {w2}");
 
 // Querying multiple conditions in one match statement
-let s = "Ahhhhhhhhh"
-match (s.begins_with('a'), s.ends_with('h')) {
+let s = "Ahhhhhhhhh";
+match (s.starts_with('a'), s.ends_with('h')) {
     (true, true) => println!("Both Conditions"),
     (_, true) => println!("Second only"),
     (_, _) => println!("Other stuff"),
     (true, true) => println!("Never happens because i'm covered by (_, _) :<"),
-}
+};
+
+// You can also match on ranges
+match 14 {
+    0..=10 => println!("smol number"),
+    11..=50=> println!("medium number"),
+    51..=100=> println!("big number"),
+    _ => ()
+};
+
+// or more complicated conditions with ifs
+let row = match p {
+    Point {y: y, ..} if y % 2 == 0 => "even", 
+    _ => "odd"
+};
+
 ```
