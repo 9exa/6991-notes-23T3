@@ -94,7 +94,9 @@ You might want to write code available across your crate, while being unisable t
 
 
 ## Testing
+Cargo provides a number of tools 
 
+### Unit testing
 ```rust
 #[derive(Default)]
 struct MyType {
@@ -113,10 +115,8 @@ mod tests {
     #[test]
     fn add_test
 }
-
 ```
 
-### Unit testing
 
 ### Integration testing
 
